@@ -5,17 +5,14 @@
     <title>The Crep Shack</title>
 </head>
 <body>
-    <h1>Welcome to The Crep Shack</h1>
+
 </body>
 </html>
 
 {% load socialaccount %}
-<h1>CWS All Auth Tutorial</h1> 
-</h1>
-<p>Based on:</p> 
-<a href="https://youtu.be/RyB_wdEZhOw">code with stein</a> 
+<h1>The Crep Shack</h1> 
 
-<hr>
+{% comment %} <hr>
 {% if request.user.is_authenticated %}
 <h2>CONGRATS :)</h2>
 <h3>You Are Logged in!</h3>
@@ -34,4 +31,4 @@
     <p>Or via Github:</p>
     <p>using url ->.../accounts/github/login/</p>
     <a href="{% provider_login_url 'github' %}"> LogIn via Github</a>
-{% endif %}
+{% endif %} {% endcomment %}
