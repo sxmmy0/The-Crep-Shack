@@ -40,7 +40,63 @@ SOCIALACCOUNT_PROVIDERS = {
             'secret': '89a5f98199a2c8528b66e5668188ce6b25a21a43',
             'key': ''
         }
-    }
+    },
+    'google':{
+        'APP': {
+            'client_id':'',
+            'secret': '',
+            'key': ''
+        }
+    },
+    'apple':{
+        'APP': {
+            'client_id':'',
+            'secret': '',
+            'key': ''
+        }
+    },
+    'facebook': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': ''
+        }
+    },
+    'instagram': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': '',
+        }
+    },
+    'microsoft': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': '',
+        }
+    },
+    'twitter': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': '',
+        }
+    },
+    'twitter_oauth2': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': '',
+        }
+    },
+    'yahoo': {
+        'APP': {
+            'client_id': '',
+            'secret': '',
+            'key': '',
+        }
+    },
 }
 
 AUTHENTICATION_BACKENDS = [
@@ -64,6 +120,14 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.apple',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.instagram',
+    'allauth.socialaccount.providers.microsoft',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.twitter_oauth2',
+    'allauth.socialaccount.providers.yahoo',
+    'allauth.socialaccount.providers.google',
     'debug_toolbar',
 ]
 
