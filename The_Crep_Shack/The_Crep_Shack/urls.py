@@ -20,12 +20,7 @@ from django.shortcuts import render
 from django.conf import settings
 import debug_toolbar
 
-def home(request):
-    return render(request, 'website/home.html')
-
-
 urlpatterns = [
-    path('', home),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', include('website.urls')),

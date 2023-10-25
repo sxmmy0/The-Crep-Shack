@@ -11,6 +11,14 @@
 
 {% load socialaccount %}
 <h1>The Crep Shack</h1> 
+{% block content %}
+<h2>Here is a list of items</h2>
+
+{% for item in items %}
+    {{ item }}
+{% endfor %}
+{% endblock content%}
+
 
 {% comment %} <hr>
 {% if request.user.is_authenticated %}
