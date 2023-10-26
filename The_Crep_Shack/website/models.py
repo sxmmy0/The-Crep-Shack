@@ -7,8 +7,12 @@ import datetime
 # Categories of Products
 class Category(models.Model):
     name = models.CharField(max_length=50)
+
     def __str__(self):
         return self.name
+    
+    class Meta:
+        verbose_name_plural = 'categories'
 
 # Customer details
 class Customer(models.Model):
