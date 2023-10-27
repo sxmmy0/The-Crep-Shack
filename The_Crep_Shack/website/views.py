@@ -10,6 +10,20 @@ from .forms import SignUpForm
 from django import forms 
 
 # Create your views here.
+def category(request, title):
+    #Replace hyphens with spaces
+    title = title.replace('-', ' ')
+    #Grab category from url
+    try:
+        #look up category
+        category = Category.objects.get(name=title)
+        products = Product.objects.filter(category=category)
+        return render(request, "content/category.html", {"products":products, "category":category})
+    except:
+        messages.success(request, ("That category does not exist!"))
+        return redirect('home')
+
+
 def product(request, pk):
     product = Product.objects.get(id=pk)
     return render(request, "content/product.html", {'product':product})

@@ -2,38 +2,31 @@
 
 {% block content %}
 
-<div class="container">
-<br>
-    <div class="card mb-3">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="...">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <center>
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    {% if product.is_on_sale %}
-                    <strike>£{{ product.price }}</strike>
-                    £{{ product.sale_price }}
-                    <br/>
-                    {{ product.category }}
-                    {% else %}
-                    £{{ product.price }}
-                    <br/>
-                    {{ product.category }}
-                    {% endif %}
-                    <br/>
-                    <br/>
-                    <br/>
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="row gx-4 gx-lg-5 align-items-center">
+            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ product.image.url }}" alt="..." /></div>
+            <div class="col-md-6">
+                <div class="small mb-1">{{ product.category }}</div>
+                <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+                {% if product.is_on_sale %}
+                <strike>£{{ product.price }}</strike>
+                £{{ product.sale_price }}
+                <br/>
+                {% else %}
+                £{{ product.price }}
+                <br/>
+                <br/>
+                <br/>
+                {% endif %}
+                <p class="lead">{{ product.description }}</p>
+                <div class="d-flex">
+                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
                     <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home Page</a>
-                    </center>
                 </div>
             </div>
         </div>
     </div>
-<br/>
-</div>
+</section>
 
 {% endblock %}

@@ -1,31 +1,38 @@
-
-
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container px-4 px-lg-5">
+    <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'home' %}">The Crep Shack</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="#!">All Products</a></li>
                         <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                        <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Air-Jordan' %}">Air Jordan</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Adidas' %}">adidas</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'ASICS' %}">ASICS</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Converse' %}">Converse</a></li>
+                        <li><New class="dropdown-item" href="{% url 'category' 'New-Balance' %}">New Balance</a></li>
+                        <li><a class="dropdown-item" href="{% url 'category' 'Nike' %}">Nike</a></li>
+                        <li><Yeezy class="dropdown-item" href="{% url 'category' 'Yeezy' %}">Yeezy</a></li>
                     </ul>
                 </li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
             </ul>
+
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
             <form class="d-flex">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     Cart
                     <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                 </button>
-
+                
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                     {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
