@@ -306,6 +306,7 @@ figure {
 img,
 svg {
   vertical-align: middle;
+  object-fit: cover;
 }
 
 table {
@@ -597,6 +598,7 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .img-thumbnail {
@@ -606,6 +608,7 @@ progress {
   border-radius: 0.375rem;
   max-width: 100%;
   height: auto;
+  object-fit: cover;
 }
 
 .figure {
