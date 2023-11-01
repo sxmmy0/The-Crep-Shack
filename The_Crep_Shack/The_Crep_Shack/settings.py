@@ -130,6 +130,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.yahoo',
     'allauth.socialaccount.providers.google',
     'debug_toolbar',
+    'shopping_cart.apps.ShoppingCartConfig',
 ]
 
 MIDDLEWARE = [

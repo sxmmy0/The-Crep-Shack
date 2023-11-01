@@ -1,32 +1,43 @@
-{% extends 'content/base.html' %}
-
-{% block content %}
+{% extends 'content/base.html' %} {% block content %}
 
 <section class="py-5">
-    <div class="container px-4 px-lg-5 my-5">
-        <div class="row gx-4 gx-lg-5 align-items-center">
-            <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ product.image.url }}" alt="..." /></div>
-            <div class="col-md-6">
-                <div class="small mb-1">{{ product.category }}</div>
-                <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
-                {% if product.is_on_sale %}
-                <strike>£{{ product.price }}</strike>
-                £{{ product.sale_price }}
-                <br/>
-                {% else %}
-                £{{ product.price }}
-                <br/>
-                <br/>
-                <br/>
-                {% endif %}
-                <p class="lead">{{ product.description }}</p>
-                <div class="d-flex">
-                    <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" />
-                    <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home Page</a>
-                </div>
-            </div>
+<div class="container px-4 px-lg-5 my-5">
+    <div class="row gx-4 gx-lg-5 align-items-center">
+    <div class="col-md-6">
+        <img
+        class="card-img-top mb-5 mb-md-0"
+        src="{{ product.image.url }}"
+        alt="..."
+        />
+    </div>
+    <div class="col-md-6">
+        <div class="small mb-1">{{ product.category }}</div>
+        <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+        {% if product.is_on_sale %}
+        <strike>£{{ product.price }}</strike>
+        £{{ product.sale_price }}
+        <br />
+        {% else %} £{{ product.price }}
+        <br />
+        <br />
+        <br />
+        {% endif %}
+        <p class="lead">{{ product.description }}</p>
+        <div class="d-flex">
+        <input
+            class="form-control text-center me-3"
+            id="inputQuantity"
+            type="num"
+            value="1"
+            style="max-width: 3rem"
+        />
+        <a href="{% url 'home' %}" class="btn btn-secondary"
+            >Back to Product Page</a
+        >
         </div>
     </div>
+    </div>
+</div>
 </section>
 
 {% endblock %}
