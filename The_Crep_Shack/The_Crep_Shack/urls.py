@@ -18,7 +18,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import render
 
-from The_Crep_Shack import shopping_cart
 from . import settings
 from django.conf.urls.static import static
 

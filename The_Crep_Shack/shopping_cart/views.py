@@ -1,14 +1,14 @@
 from django.shortcuts import render
 
 # Create your views here.
-def cart_summary(request):
+def shopping_cart_summary(request):
+    return render(request, "cart_summary.html", {})
+
+def shopping_cart_add(request):
     pass
 
-def cart_add(request):
+def shopping_cart_delete(request):
     pass
 
-def cart_delete(request):
-    pass
-
-def cart_update(request):
+def shopping_cart_update(request):
     pass
