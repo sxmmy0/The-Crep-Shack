@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 def shopping_cart_summary(request):
-    return render(request, "cart_summary.html", {})
+    return render(request, "shopping_cart_summary.html", {})
 
 def shopping_cart_add(request):
     pass

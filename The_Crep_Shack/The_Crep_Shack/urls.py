@@ -28,7 +28,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('website.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
-    path('cart/', include('shopping_cart.urls')),
+    path('shopping_cart/', include('shopping_cart.urls')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
