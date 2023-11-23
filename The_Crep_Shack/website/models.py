@@ -28,13 +28,13 @@ class Customer(models.Model):
 #All of our Products
 class Product(models.Model):
     name = models.CharField(max_length=50)
-    price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
+    price = models.DecimalField(default=0, decimal_places=2, max_digits=6) # type: ignore
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1) # type: ignore
     description = models.CharField(max_length=250, default='', blank=True, null=True)
     image = models.ImageField(upload_to='uploads/product/')
     # Sale Items
     is_on_sale = models.BooleanField(default=False)
-    sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6)
+    sale_price = models.DecimalField(default=0, decimal_places=2, max_digits=6) # type: ignore
 
 
     def __str__(self):
