@@ -3,25 +3,26 @@
 <section class="py-5">
 <div class="container px-4 px-lg-5 my-5">
     <div class="row gx-4 gx-lg-5 align-items-center">
-    <div class="col-md-6">
-        <img
-        class="card-img-top mb-5 mb-md-0"
-        src="{{ product.image.url }}"
-        alt="..."
-        />
-    </div>
+        <div class="col-md-6">
+            <img
+            class="card-img-top mb-5 mb-md-0"
+            src="{{ product.image.url }}"
+            alt="..."
+            />
+        </div>
     <div class="col-md-6">
         <div class="small mb-1">{{ product.category }}</div>
-        <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
-        {% if product.is_on_sale %}
-        <strike>£{{ product.price }}</strike>
-        £{{ product.sale_price }}
-        <br />
-        {% else %} £{{ product.price }}
-        <br />
-        <br />
-        <br />
-        {% endif %}
+            <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+            {% if product.is_on_sale %}
+            <strike>£{{ product.price }}</strike>
+            £{{ product.sale_price }}
+            <br />
+            {% else %} 
+                £{{ product.price }}
+            <br />
+            <br />
+            <br />
+            {% endif %}
         <p class="lead">{{ product.description }}</p>
         <div class="d-flex">
         <input
@@ -31,13 +32,35 @@
             value="1"
             style="max-width: 3rem"
         />
-        <a href="{% url 'home' %}" class="btn btn-secondary"
-            >Back to Product Page</a
-        >
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Product Page</a>
+        
+        <button type="button" value="{{product.id}}" class="btn btn-secondary" id="add-cart">Add To Cart</button>
         </div>
     </div>
     </div>
 </div>
 </section>
+
+<script>
+// Check if button has been pressed
+$(document).on('click', '#add-cart', function(e){
+    e.preventDefault();
+    $.ajax({
+        type: 'POST'
+        url: '{% url 'cart_add' %}'
+        data: {
+            product_id: $('#add-cart').val(),
+            crsfmiddlewaretoken: '{{ csrf_token }}'
+            action: 'post'
+        },
+        success: function(json){
+            console.log(json)
+        },
+        error: function(xhr, errmsg, err){
+        },
+    });
+})
+    
+</script>
 
 {% endblock %}
