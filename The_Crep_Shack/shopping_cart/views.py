@@ -15,12 +15,17 @@ def shopping_cart_add(request):
     if request.POST.get('action') == 'post':
         #Get 
         product_id = int(request.POST.get('product_id'))
-        #Lookup product in DB
+        # Lookup product in DB
         product = get_object_or_404(Product, id=product_id)
-        #Save to session
+        # Save to session
         cart.add(product=product)
-        #Return a response
-        response = JsonResponse({'Product Name: ': product.name})
+
+        # Get Cart Quantity
+        cart_quantity = cart.__len__()
+
+        # Return a response
+        # response = JsonResponse({'Product Name: ': product.name})
+        response = JsonResponse({'quantity ': cart_quantity})
         return response
 
 def shopping_cart_delete(request):
