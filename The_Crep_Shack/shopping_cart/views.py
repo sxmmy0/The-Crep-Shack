@@ -2,13 +2,15 @@ from urllib import response
 from django.shortcuts import render, get_object_or_404
 from .cart import Cart
 from website.models import Product
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 # Create your views here.
-def shopping_cart_summary(request):
-    return render(request, "shopping_cart_summary.html", {})
+def cart_summary(request):
+    cart = Cart(request)
+    cart_products = cart.get_prods
+    return render(request, "shopping_cart_summary.html", {"cart_products":cart_products})
 
-def shopping_cart_add(request):
+def cart_add(request):
     #Get the cart
     cart = Cart(request)
     #Test for POST
@@ -25,11 +27,11 @@ def shopping_cart_add(request):
 
         # Return a response
         # response = JsonResponse({'Product Name: ': product.name})
-        response = JsonResponse({'quantity ': cart_quantity})
+        response = JsonResponse({'quantity': cart_quantity})
         return response
 
-def shopping_cart_delete(request):
+def cart_delete(request):
     pass
 
-def shopping_cart_update(request):
+def cart_update(request):
     pass
