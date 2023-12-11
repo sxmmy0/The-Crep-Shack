@@ -1,0 +1,73 @@
+{% extends 'content/base.html' %} {% block content %}
+<!-- Section-->
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">All Products</h1>
+            <p class="lead fw-normal text-white-50 mb-0">View All Products in Our Collection</p>
+        </div>
+    </div>
+</header>
+{% for product in products %} {% if product.is_on_sale %}
+
+<section class="py-5">
+<div class="container px-4 px-lg-5 mt-5">
+    <div
+    class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+    >
+    <div class="card col mb-5 card h-100" style="width: 18rem">
+        <!-- Sale badge-->
+        <div
+        class="badge bg-dark text-white position-absolute"
+        style="top: 0.5rem; right: 0.5rem"
+        >
+        Sale
+        </div>
+        <!-- Product image-->
+        <img
+        src="{{ product.image.url }}"
+        class="card-img-top"
+        alt="{{product.name}}"
+        />
+        <div class="card-body p-4 text-center">
+        <h5 class="card-title fw-bolder">{{ product.name }}</h5>
+        <p class="card-text">{{product.category}}</p>
+        <strike>£{{ product.price }}</strike>
+        £{{ product.sale_price }}
+        <br />
+        {{ product.category }}
+        <a href="{% url 'product' product.id %}" class="btn btn-primary"
+            >View Product</a
+        >
+        </div>
+    </div>
+
+    {% else %}
+
+    <div class="col mb-5 card h-100" style="width: 18rem">
+        <!-- Product image-->
+        <img
+        src="{{ product.image.url }}"
+        class="card-img-top"
+        alt="{{product.name}}"
+        />
+        <div class="card-body p-4 text-center">
+        <h5 class="card-title fw-bolder">{{ product.name }}</h5>
+        <p class="card-text">{{product.category}}</p>
+        £{{ product.price }}
+        <br />
+        {{ product.category }}
+        <a href="{% url 'product' product.id %}" class="btn btn-primary"
+            >View Product</a
+        >
+        </div>
+    </div>
+
+    {% endif %} {% endfor %}
+    </div>
+</div>
+</section>
+
+{% endblock%} 
+

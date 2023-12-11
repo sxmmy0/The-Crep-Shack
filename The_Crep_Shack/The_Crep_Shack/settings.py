@@ -131,6 +131,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'debug_toolbar',
     'shopping_cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -161,6 +162,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'shopping_cart.context_processors.cart',
+                'checkout.context_processors.checkout',
             ],
         },
     },

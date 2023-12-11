@@ -31,8 +31,9 @@
             >Shop</a
           >
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#!">All Products</a></li>
+            <li><a class="dropdown-item" href="{% url 'all_products' %}">All Products</a></li>
             <li><hr class="dropdown-divider" /></li>
+            
             <li>
               <a class="dropdown-item" href="{% url 'category' 'Air-Jordan' %}"
                 >Air Jordan</a
@@ -46,6 +47,11 @@
             <li>
               <a class="dropdown-item" href="{% url 'category' 'ASICS' %}"
                 >ASICS</a
+              >
+            </li>
+            <li>
+              <a class="dropdown-item" href="{% url 'category' 'Axel-Arigato' %}"
+                >Axel Arigato</a
               >
             </li>
             <li>

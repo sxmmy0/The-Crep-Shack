@@ -92,3 +92,16 @@ def register_user(request):
             return redirect('register')
     else:
         return render(request, "content/register.html", {'form': form})
+
+def privacy(request):
+    return render(request, "content/privacy.html", {})
+
+def terms(request):
+    return render(request, "content/terms.html", {})
+
+def faq(request):
+    return render(request, "content/faq.html", {})
+
+def all_products(request):
+    products = Product.objects.all()
+    return render(request, "content/all_products.html", {'products': products})
