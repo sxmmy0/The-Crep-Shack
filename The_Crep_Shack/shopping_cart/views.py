@@ -19,6 +19,7 @@ def cart_add(request):
 
         #Get Product ID
         product_id = int(request.POST.get('product_id'))
+        product_qty = int(request.POST.get('product_id'))
 
         # Lookup product in DB
         product = get_object_or_404(Product, id=product_id)

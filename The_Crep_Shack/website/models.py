@@ -13,6 +13,8 @@ class Category(models.Model):
     
     class Meta:
         verbose_name_plural = 'categories'
+    
+    
 
 # Customer details
 class Customer(models.Model):

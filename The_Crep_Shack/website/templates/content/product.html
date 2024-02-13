@@ -2,6 +2,7 @@
 
 <section class="py-5">
 <div class="container px-4 px-lg-5 my-5">
+    <a href="{% url 'category' title=product.category.name %}" type="button" class="btn btn-light bi bi-caret-left">Return to Product Page</a>
     <div class="row gx-4 gx-lg-5 align-items-center">
     <div class="col-md-6">
         <img
@@ -13,32 +14,33 @@
     <div class="col-md-6">
         <div class="small mb-1">{{ product.category }}</div>
         <h1 class="display-5 fw-bolder">{{ product.name }}</h1>
+        {% comment %} <h2 class="lead">{{ product.description }}</h2> {% endcomment %}
         {% if product.is_on_sale %}
         <strike>£{{ product.price }}</strike>
         £{{ product.sale_price }}
         <br />
         {% else %} £{{ product.price }}
-        <br />
-        <br />
-        <br />
         {% endif %}
-        <p class="lead">{{ product.description }}</p>
+        <br />
+            <select class="form-select" aria-label="Default select example" id="qty-cart">
+                <option selected>Select Quantity</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+            </select>
+        <br />
         <div class="d-flex">
-        <input
-            class="form-control text-center me-3"
-            id="inputQuantity"
-            type="num"
-            value="1"
-            style="max-width: 3rem"
-        />
-        <a href="{% url 'home' %}" class="btn btn-secondary"
-            >Back to Product Page</a
-        >
-
         <button
             type="button"
             value="{{product.id}}"
-            class="btn btn-secondary"
+            class="btn btn-dark"
             id="add-cart"
         >
             Add To Cart
@@ -58,6 +60,7 @@ $(document).on('click', '#add-cart', function(e){
         url: '{% url 'cart_add' %}',
         data: {
             product_id: $('#add-cart').val(),
+            product_qty: $('#qty-cart option:selected').text(),
             csrfmiddlewaretoken: '{{ csrf_token }}',
             action: 'post',
         },

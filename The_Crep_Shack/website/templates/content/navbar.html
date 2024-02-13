@@ -31,9 +31,13 @@
             >Shop</a
           >
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="{% url 'all_products' %}">All Products</a></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'all_products' %}"
+                >All Products</a
+              >
+            </li>
             <li><hr class="dropdown-divider" /></li>
-            
+
             <li>
               <a class="dropdown-item" href="{% url 'category' 'Air-Jordan' %}"
                 >Air Jordan</a
@@ -50,7 +54,9 @@
               >
             </li>
             <li>
-              <a class="dropdown-item" href="{% url 'category' 'Axel-Arigato' %}"
+              <a
+                class="dropdown-item"
+                href="{% url 'category' 'Axel-Arigato' %}"
                 >Axel Arigato</a
               >
             </li>
@@ -90,13 +96,14 @@
         />
       </form>
       <form class="d-flex">
-        <a
-          href="{% url 'cart_summary' %}"
-          class="btn btn-outline-dark"
-        >
+        <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark">
           <i class="bi-cart-fill me-1"></i>
-          Cart
-          <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
+          Basket
+          <span
+            class="badge bg-dark text-white ms-1 rounded-pill"
+            id="cart_quantity"
+            >{{ cart|length }}</span
+          >
         </a>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
