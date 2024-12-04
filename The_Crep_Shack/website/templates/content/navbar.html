@@ -1,7 +1,7 @@
 <!-- Navigation-->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <a class="navbar-brand" href="{% url 'home' %}">The Crep Shack</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Crep Haus</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -96,14 +96,9 @@
         />
       </form>
       <form class="d-flex">
-        <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark">
-          <i class="bi-cart-fill me-1"></i>
-          Basket
-          <span
-            class="badge bg-dark text-white ms-1 rounded-pill"
-            id="cart_quantity"
-            >{{ cart|length }}</span
-          >
+        <a href="{% url 'cart_summary' %}" class="btn btn-outline-dark"><i class="bi-cart-fill me-1"></i>
+          Cart
+          <span class="badge bg-dark text-white ms-1 rounded-pill" id="cart_quantity">{{ cart|length }}</span>
         </a>
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">

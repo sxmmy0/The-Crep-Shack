@@ -1,4 +1,5 @@
-{% extends 'content/base.html' %} {% block content %}
+{% extends 'content/base.html' %} 
+{% block content %}
 <header>
   <!-- Heading -->
   <div class="bg-dark">
@@ -213,7 +214,7 @@
           <hr />
           <h6 class="text-dark my-4">Items in Basket</h6>
           {% if cart_products %}
-          {% for product in cart_products %}
+            {% for product in cart_products %}
           <div class="d-flex align-items-center mb-4">
             <div class="me-3 position-relative">
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill badge-secondary"></span>
@@ -233,9 +234,16 @@
               {% else %}
               <div class="price text-muted">{{ product.price}}</div>
               {% endif %}
+              <select class="form-select" id="select{{product.id}}">
+                {% for key, value in quantities.items %}
+                  {% if key == product.id|slugify %}
+                <option selected>{{ value }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select>
             </div>
           </div>
-          {% endfor %}
+            {% endfor %}
           {% else %}
           Add Items to Basket
           {% endif %}
