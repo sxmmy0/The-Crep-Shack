@@ -21,7 +21,7 @@ class Cart():
             pass
         else:
             # self.cart[product_id] = {'price': str(product.price)}
-            self.cart[product_id] = int(product_qty)
+            self.cart[product_id] = str(product_qty)
 
         self.session.modified = True
 
@@ -39,4 +39,17 @@ class Cart():
     def get_quants(self):
         quantities = self.cart
         return quantities
+    
+    def update(self, product, quantity):
+        product_id = str(product)
+        product_quantity = int(quantity)
+        # Get Cart
+        cart = self.cart
+        #Update Cart
+        cart[product_id] = product_qty
+        
+        self.session.modified = True
+        
+        object = self.cart
+        return object
     

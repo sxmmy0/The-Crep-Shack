@@ -234,13 +234,37 @@
               {% else %}
               <div class="price text-muted">{{ product.price}}</div>
               {% endif %}
-              <select class="form-select" id="select{{product.id}}">
+                <br />
+                  <select class="form-select" aria-label="Default select example" id="select{{product.id}}">
+                      
+                        {% for key, value in quantities.items %}
+                          {% if key == product.id|slugify %}
+                          <option selected>{{ value }}</option>
+                          {% endif %}
+                        {% endfor %}
+                      
+                      <option value="3">UK3</option>
+                      <option value="4">UK4</option>
+                      <option value="5">UK5</option>
+                      <option value="6">UK6</option>
+                      <option value="7">UK7</option>
+                      <option value="8">UK8</option>
+                      <option value="9">UK9</option>
+                      <option value="10">UK10</option>
+                      <option value="11">UK11</option>
+                      <option value="12">UK12</option>
+                      <option value="13">UK13</option> 
+                  </select>
+                  <br />
+                  <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">Update</button>
+                <br />
+              {% comment %} <select class="form-select" id="select{{product.id}}">
                 {% for key, value in quantities.items %}
                   {% if key == product.id|slugify %}
                 <option selected>{{ value }}</option>
                   {% endif %}
                 {% endfor %}
-              </select>
+              </select> {% endcomment %}
             </div>
           </div>
             {% endfor %}
@@ -254,6 +278,30 @@
   </div>
 </section>
 
-<!-- Footer -->
+<!-- JavaScript -->
+<script>
+  // Update Cart
+$(document).on('click', '.update-cart', function(e){
+  e.preventDefault();
+  //Grab product id
+  var productid = $(this).data('index');
+  $.ajax({
+      type: 'POST',
+      url: '{% url 'cart_update' %}',
+      data: {
+          product_id: $(this).data('index'),
+          product_qty: $('#select' + productid + 'option:selected').text(),
+          csrfmiddlewaretoken: '{{ csrf_token }}',
+          action: 'post',
+      },
+      success: function(json){
+          location.reload();
+      },
+      error: function(xhr, errmsg, err){
+      },
+  });
+})
+</script>
 
 {% endblock %}
+
