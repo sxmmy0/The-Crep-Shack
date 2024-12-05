@@ -257,6 +257,9 @@
                   </select>
                   <br />
                   <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">Update</button>
+                  <button href="trash3.svg" type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">
+                    <i class="bi bi-trash3">Delete</i>
+                  </button>
                 <br />
               {% comment %} <select class="form-select" id="select{{product.id}}">
                 {% for key, value in quantities.items %}
@@ -279,6 +282,7 @@
 </section>
 
 <!-- JavaScript -->
+
 <script>
   // Update Cart
 $(document).on('click', '.update-cart', function(e){
