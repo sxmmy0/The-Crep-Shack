@@ -1,4 +1,6 @@
 from website.models import Product
+from decimal import Decimal
+
 class Cart():
     def __init__(self, request):
         self.session = request.session
@@ -24,6 +26,31 @@ class Cart():
             self.cart[product_id] = str(product_qty)
 
         self.session.modified = True
+        
+
+
+    def cart_total(self):
+        # Get product IDS
+        product_ids = self.cart.keys()
+        # lookup those keys in our products database model
+        products = Product.objects.filter(id__in=product_ids)
+        # Get quantities
+        quantities = self.cart
+        # Start counting at 0
+        total = Decimal('0.0')  # Intialise Decimal
+
+        for key, value in quantities.items():
+            # Convert key string into int so we can do math
+            key = int(key)
+            for product in products:
+                if product.id == key:
+                    # Convert quantity to decimal if needed
+                    value = Decimal(str(value))  # Optional conversion
+                    if product.is_on_sale:
+                        total += product.sale_price * value
+                    else:
+                        total += product.price * value
+        return total
 
     def __len__(self):
         return len(self.cart)
@@ -42,7 +69,7 @@ class Cart():
     
     def update(self, product, quantity):
         product_id = str(product)
-        product_quantity = int(quantity)
+        product_qty = int(quantity)
         # Get Cart
         cart = self.cart
         #Update Cart
@@ -53,3 +80,32 @@ class Cart():
         object = self.cart
         return object
     
+    def delete(self, product):
+        product_id = str(product)
+        # Delete from dictionary/cart
+        if product_id in self.cart:
+            del self.cart[product_id]
+
+        self.session.modified = True
+    
+    # def cart_total(self):
+    #     # Get product IDS
+    #     product_ids = self.cart.keys()
+    #     # Lookup those keys in our products database model
+    #     products = Product.objects.filter(id__in=product_ids)
+    #     # Get quantities
+    #     quantities = self.cart
+    #     # Start counting at 0
+    #     total = Decimal('0.0')  # Inicialize total como Decimal
+        
+    #     for key, value in quantities.items():
+    #         # Convert key string into int so we can do math
+    #         key = int(key)
+    #         for product in products:
+    #             if product.id == key:
+    #                 qty = Decimal(value)  # Converta value para Decimal
+    #                 if product.is_sale:
+    #                     total += product.sale_price * qty
+    #                 else:
+    #                     total += product.price * qty
+    #     return total

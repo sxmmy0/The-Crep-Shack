@@ -17,25 +17,27 @@
         {% comment %} <h2 class="lead">{{ product.description }}</h2> {% endcomment %}
         {% if product.is_on_sale %}
         <strike>£{{ product.price }}</strike>
-        £{{ product.sale_price }}
+        <font color="red">£{{ product.sale_price }}</font>
         <br />
         {% else %} 
         £{{ product.price }}
         {% endif %}
         <br />
             <select class="form-select" aria-label="Default select example" id="qty-cart">
-                <option selected>Select Your Size</option>
-                <option value="3">UK3</option>
-                <option value="4">UK4</option>
-                <option value="5">UK5</option>
-                <option value="6">UK6</option>
-                <option value="7">UK7</option>
-                <option value="8">UK8</option>
-                <option value="9">UK9</option>
-                <option value="10">UK10</option>
-                <option value="11">UK11</option>
-                <option value="12">UK12</option>
-                <option value="13">UK13</option>
+                <option selected>Select Quantity</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
             </select>
         <br />
         <div class="d-flex">

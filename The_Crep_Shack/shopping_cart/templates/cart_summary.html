@@ -187,23 +187,23 @@
       </div>
       <div class="col-xl-4 col-lg-4 d-flex justify-content-center justify-content-lg-end">
         <div class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px;">
-          <h6 class="mb-3">Summary</h6>
+          <h6 class="mb-3">Shopping Cart Summary</h6>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Total price:</p>
-            <p class="mb-2">$195.90</p>
+            <p class="mb-2">£{{ totals }}</p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Discount:</p>
-            <p class="mb-2 text-danger">- $60.00</p>
+            <p class="mb-2 text-danger"></p>
           </div>
           <div class="d-flex justify-content-between">
             <p class="mb-2">Shipping cost:</p>
-            <p class="mb-2">+ $14.00</p>
+            <p class="mb-2"></p>
           </div>
           <hr />
           <div class="d-flex justify-content-between">
             <p class="mb-2">Total price:</p>
-            <p class="mb-2 fw-bold">$149.90</p>
+            <p class="mb-2 fw-bold">£{{ totals }}</p>
           </div>
 
           <div class="input-group mt-3 mb-4">
@@ -229,45 +229,36 @@
                 <strike>
                 £{{ product.price}}
                 </strike>
-                £{{ product.sale_price }}
+                <font color="red">£{{ product.sale_price }}</font>
               </div>
               {% else %}
               <div class="price text-muted">{{ product.price}}</div>
               {% endif %}
-                <br />
-                  <select class="form-select" aria-label="Default select example" id="select{{product.id}}">
-                      
-                        {% for key, value in quantities.items %}
-                          {% if key == product.id|slugify %}
-                          <option selected>{{ value }}</option>
-                          {% endif %}
-                        {% endfor %}
-                      
-                      <option value="3">UK3</option>
-                      <option value="4">UK4</option>
-                      <option value="5">UK5</option>
-                      <option value="6">UK6</option>
-                      <option value="7">UK7</option>
-                      <option value="8">UK8</option>
-                      <option value="9">UK9</option>
-                      <option value="10">UK10</option>
-                      <option value="11">UK11</option>
-                      <option value="12">UK12</option>
-                      <option value="13">UK13</option> 
+              <br />
+                <select class="form-select" aria-label="Default select example" id="select{{product.id}}">
+                  {% for key, value in quantities.items %}
+                    {% if key == product.id|slugify %}
+                      <option selected>{{ value }}</option>
+                    {% endif %}
+                  {% endfor %}
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
+                      <option value="7">7</option>
+                      <option value="8">8</option>
+                      <option value="9">9</option>
+                      <option value="10">10</option>
+                      <option value="11">11</option>
+                      <option value="12">12</option>
+                      <option value="13">13</option> 
                   </select>
                   <br />
                   <button type="button" data-index="{{product.id}}" class="btn btn-secondary update-cart">Update</button>
-                  <button href="trash3.svg" type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">
-                    <i class="bi bi-trash3">Delete</i>
-                  </button>
-                <br />
-              {% comment %} <select class="form-select" id="select{{product.id}}">
-                {% for key, value in quantities.items %}
-                  {% if key == product.id|slugify %}
-                <option selected>{{ value }}</option>
-                  {% endif %}
-                {% endfor %}
-              </select> {% endcomment %}
+                  <button type="button" data-index="{{product.id}}" class="btn btn-danger delete-product">Delete</button>
+                  <br />
             </div>
           </div>
             {% endfor %}
@@ -275,7 +266,9 @@
           Add Items to Basket
           {% endif %}
           </div>
+        
         </div>
+
       </div>
     </div>
   </div>
@@ -305,7 +298,34 @@ $(document).on('click', '.update-cart', function(e){
       },
   });
 })
+
+ // Delete Item From Cart
+$(document).on('click', '.delete-product', function(e){
+  e.preventDefault();
+  // grab the product id
+  $.ajax({
+    type: 'POST',
+    url: '{% url 'cart_delete' %}',
+    data: {
+        product_id: $(this).data('index'),
+        csrfmiddlewaretoken: '{{ csrf_token }}',
+        action: 'post'
+    },
+    success: function(json){
+      location.reload();
+    },
+    error: function(xhr, errmsg, err){
+    },
+  });
+})
 </script>
 
 {% endblock %}
 
+ {% comment %} <select class="form-select" id="select{{product.id}}">
+                {% for key, value in quantities.items %}
+                  {% if key == product.id|slugify %}
+                <option selected>{{ value }}</option>
+                  {% endif %}
+                {% endfor %}
+              </select> {% endcomment %}
